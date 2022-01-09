@@ -96,6 +96,24 @@ cheating_strategies = [
 
 ordinary_strategies = strategies  # This is a legacy and will be removed
 
+harry_tournament = [
+    TitForTat,
+    FirstByTidemanAndChieruzzi,
+    FirstByNydegger,
+    FirstByGrofman,
+    FirstByShubik,
+    FirstBySteinAndRapoport,
+    Grudger,
+    FirstByDavis,
+    FirstByGraaskamp,
+    FirstByDowning,
+    FirstByFeld,
+    FirstByJoss,
+    FirstByTullock,
+    FirstByAnonymous,
+    Random,
+    LenientGrimTrigger,
+]
 
 def filtered_strategies(filterset, strategies=all_strategies):
     """

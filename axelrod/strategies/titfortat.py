@@ -102,6 +102,38 @@ class TwoTitsForTat(Player):
         """Actual strategy definition that determines player's action."""
         return D if D in opponent.history[-2:] else C
 
+class LenientGrimTrigger(Player):
+    """Always cooperates but defects forever after two consecutive defects.
+
+    Names:
+    - Lenient Grim Trigger:
+    """
+
+    name = "Lenient Grim Trigger"
+    classifier = {
+        "memory_depth": 2,  # Long memory, memory-2
+        "stochastic": False,
+        "long_run_time": False,
+        "inspects_source": False,
+        "manipulates_source": False,
+        "manipulates_state": False
+    }
+
+    def strategy(self, opponent):
+        """Actual strategy definition that determines player's action."""
+        if len(self.history) < 2:
+            # Start with cooperate on first two moves
+            return C
+  
+        if self.history[-1] == D:
+            # If I defected previously, defect again
+            return D
+        elif opponent.history[-1] == D and opponent.history[-2] == D:
+            # If opponent played two defects consecutively, defect
+            return D
+        else:
+            # Otherwise cooperate
+            return C
 
 class DynamicTwoTitsForTat(Player):
     """
